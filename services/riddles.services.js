@@ -8,13 +8,13 @@ export async function getAllRiddles() {
         }
         return file;
     } catch (err) {
-        return err;
+        return err.message;
     }
 }
 
 export async function addRiddle(newRiddle) {
     let file = await getAllRiddles();
-    if (file.message === "The database is empty") {
+    if (file === "The database is empty") {
         file = []
     } else {
         file = JSON.parse(file)
@@ -26,7 +26,7 @@ export async function addRiddle(newRiddle) {
 export async function updateRiddle(update) {
     let file = await getAllRiddles();
     try {
-        if (file.message === "The database is empty") {
+        if (file === "The database is empty") {
             throw new Error(file);
         } else {
             file = JSON.parse(file)
@@ -51,7 +51,7 @@ export async function updateRiddle(update) {
 export async function deleteRiddle(id) {
     let file = await getAllRiddles();
     try {
-        if (file.message === "The database is empty") {
+        if (file === "The database is empty") {
             throw new Error(file);
         } else {
             file = JSON.parse(file)
