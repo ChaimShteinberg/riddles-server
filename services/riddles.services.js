@@ -22,3 +22,28 @@ export async function addRiddle(newRiddle) {
     file.push(newRiddle)
     await writeRiddles(JSON.stringify(file, null, 2))
 }
+
+export async function updateRiddle(update) {
+    let file = await getAllRiddles();
+    try {
+        if (file.message === "The database is empty") {
+            throw new Error(file);
+        } else {
+            file = JSON.parse(file)
+        }
+        for (const riddle of file) {
+            if (riddle.id === update.id) {
+                const updateKeys = Object.keys(update);
+                for (const key of updateKeys) {
+                    riddle[key] = update[key];
+                }
+                await writeRiddles(JSON.stringify(file, null, 2));
+                return;
+            }
+        }
+        throw new Error("The riddle is not fount");
+
+    } catch (err) {
+        return err
+    }
+}
