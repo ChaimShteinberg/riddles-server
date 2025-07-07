@@ -4,6 +4,8 @@
 
 ```
 ├── DAL/
-│   └── riddles.dal.js      read/write to riddles database
+│   └── riddles.dal.js          read/write to riddles database
 ├── DB/
-│   └── riddles.txt         riddles database
+│   └── riddles.txt             riddles database
+├── services/
+│   └── riddles.services.js     CRUD

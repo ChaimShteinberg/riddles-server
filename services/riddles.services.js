@@ -69,5 +69,3 @@ export async function deleteRiddle(id) {
         return err
     }
 }
-
-await deleteRiddle(0)
