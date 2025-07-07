@@ -47,3 +47,27 @@ export async function updateRiddle(update) {
         return err
     }
 }
+
+export async function deleteRiddle(id) {
+    let file = await getAllRiddles();
+    try {
+        if (file.message === "The database is empty") {
+            throw new Error(file);
+        } else {
+            file = JSON.parse(file)
+        }
+        for (const riddle in file) {
+            if (file[riddle].id === id) {
+                file.splice(riddle, 1);
+                await writeRiddles(JSON.stringify(file, null, 2));
+                return
+            }
+        }
+        throw new Error("The riddle is not fount");
+
+    } catch (err) {
+        return err
+    }
+}
+
+await deleteRiddle(0)
