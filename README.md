@@ -11,3 +11,6 @@
 │   └── riddles.services.js         CRUD
 ├── controllers/
 │   └── riddles.controllers.js      Handle HTTP requests
+├── routers/
+│   └── riddles.router.js           Route by URL and method
+└── app.js
