@@ -66,15 +66,7 @@
   {
     "id": "6",
     "level": "easy",
-    "name": "f",
-    "taskDescription": "f",
-    "correctAnswer": "f",
-    "hint": "f"
-  },
-  {
-    "id": "11",
-    "level": "easy",
-    "name": "f",
+    "name": "jjjjjjjjjjjjjjjjj",
     "taskDescription": "f",
     "correctAnswer": "f",
     "hint": "f"

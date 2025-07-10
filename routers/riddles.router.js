@@ -7,7 +7,7 @@ riddlesRouter.get('/getAll', getRiddlesController);
 
 riddlesRouter.post('/create', addRiddleController);
 
-
+riddlesRouter.put('/update', updateRiddleController);
 
 // const router = {
 //     GET:{
