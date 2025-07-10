@@ -1,4 +1,4 @@
-# riddels-server
+# riddles-server
 
 ## מבנה תיקיות
 
