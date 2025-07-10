@@ -9,6 +9,8 @@ riddlesRouter.post('/create', addRiddleController);
 
 riddlesRouter.put('/update', updateRiddleController);
 
+riddlesRouter.delete('/delete/:id', deleteRiddleController)
+
 // const router = {
 //     GET:{
 //         '/': getRiddlesController

@@ -46,29 +46,5 @@
     "taskDescription": "If 'stop' is to 'pots', what is 'drawer' reversed?",
     "correctAnswer": "reward",
     "hint": "Write the word backward."
-  },
-  {
-    "id": "8",
-    "level": "easy",
-    "name": "g",
-    "taskDescription": "g",
-    "correctAnswer": "gg",
-    "hint": "g"
-  },
-  {
-    "id": "7",
-    "level": "easy",
-    "name": "d",
-    "taskDescription": "d",
-    "correctAnswer": "dd",
-    "hint": "d"
-  },
-  {
-    "id": "6",
-    "level": "easy",
-    "name": "jjjjjjjjjjjjjjjjj",
-    "taskDescription": "f",
-    "correctAnswer": "f",
-    "hint": "f"
   }
 ]
