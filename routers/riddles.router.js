@@ -11,19 +11,5 @@ riddlesRouter.put('/update', updateRiddleController);
 
 riddlesRouter.delete('/delete/:id', deleteRiddleController)
 
-// const router = {
-//     GET:{
-//         '/': getRiddlesController
-//     }, 
-//     POST:{
-//         '/': addRiddleController
-//     }, 
-//     PUT:{
-//         '/': updateRiddleController
-//     }, 
-//     DELETE:{
-//         '/': deleteRiddleController
-//     }
-// };
 
 export default riddlesRouter;
