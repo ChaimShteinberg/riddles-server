@@ -1,16 +1,19 @@
-import {createServer} from "node:http"
-import router from "./routers/riddles.router.js"
+import express from "express";
+import riddlesRouter from "./routers/riddles.router.js";
 
-const server = createServer(async (req, res) => {
-    console.log(`method: ${req.method}, url: ${req.url}`)
-    try{
-    await router[req.method][req.url](req, res)
+const PORT = 1456;
 
-    } catch (err){
-        res.end(err.message)
-    }
+const app = express();
+
+app.use(express.json())
+
+app.use((req, res, next) => {
+    console.log(`method: ${req.method}, url: ${req.url}`);
+    next();
 })
 
-server.listen(1456, () => {
-    console.log("port: 1456")
+app.use('/riddles', riddlesRouter)
+
+app.listen(PORT, () => {
+    console.log(`port: ${PORT}`)
 })

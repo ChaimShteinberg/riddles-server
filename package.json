@@ -1,0 +1,24 @@
+{
+  "name": "riddles-server",
+  "version": "1.0.0",
+  "description": "```\r ├── DAL/\r │   └── riddles.dal.js              read/write to riddles database\r ├── DB/\r │   └── riddles.txt                 riddles database\r ├── services/\r │   └── riddles.services.js         CRUD\r ├── controllers/\r │   └── riddles.controllers.js      Handle HTTP requests\r ├── routers/\r │   └── riddles.router.js           Route by URL and method\r └── app.js",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChaimShteinberg/riddels-server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChaimShteinberg/riddels-server/issues"
+  },
+  "homepage": "https://github.com/ChaimShteinberg/riddels-server#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}

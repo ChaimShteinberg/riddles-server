@@ -1,18 +1,15 @@
+import express from "express";
 import { addRiddleController, deleteRiddleController, getRiddlesController, updateRiddleController } from "../controllers/riddles.controllers.js";
 
-const router = {
-    GET:{
-        '/': getRiddlesController
-    }, 
-    POST:{
-        '/': addRiddleController
-    }, 
-    PUT:{
-        '/': updateRiddleController
-    }, 
-    DELETE:{
-        '/': deleteRiddleController
-    }
-};
+const riddlesRouter = express.Router();
 
-export default router;
+riddlesRouter.get('/getAll', getRiddlesController);
+
+riddlesRouter.post('/create', addRiddleController);
+
+riddlesRouter.put('/update', updateRiddleController);
+
+riddlesRouter.delete('/delete/:id', deleteRiddleController)
+
+
+export default riddlesRouter;
