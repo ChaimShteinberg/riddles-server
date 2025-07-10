@@ -3,7 +3,9 @@ import { addRiddleController, deleteRiddleController, getRiddlesController, upda
 
 const riddlesRouter = express.Router();
 
-riddlesRouter.get('/getAll', getRiddlesController)
+riddlesRouter.get('/getAll', getRiddlesController);
+
+riddlesRouter.post('/create', addRiddleController);
 
 
 
