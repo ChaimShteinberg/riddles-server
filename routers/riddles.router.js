@@ -3,19 +3,23 @@ import { addRiddleController, deleteRiddleController, getRiddlesController, upda
 
 const riddlesRouter = express.Router();
 
-const router = {
-    GET:{
-        '/': getRiddlesController
-    }, 
-    POST:{
-        '/': addRiddleController
-    }, 
-    PUT:{
-        '/': updateRiddleController
-    }, 
-    DELETE:{
-        '/': deleteRiddleController
-    }
-};
+riddlesRouter.get('/getAll', getRiddlesController)
 
-export default router;
+
+
+// const router = {
+//     GET:{
+//         '/': getRiddlesController
+//     }, 
+//     POST:{
+//         '/': addRiddleController
+//     }, 
+//     PUT:{
+//         '/': updateRiddleController
+//     }, 
+//     DELETE:{
+//         '/': deleteRiddleController
+//     }
+// };
+
+export default riddlesRouter;

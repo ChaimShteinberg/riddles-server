@@ -2,7 +2,7 @@ import { getAllRiddles, addRiddle, updateRiddle, deleteRiddle } from "../service
 
 export async function getRiddlesController(req, res) {
     const riddles = await getAllRiddles();
-    res.end(riddles);
+    res.send(riddles);
 }
 
 export function addRiddleController(req, res) {
