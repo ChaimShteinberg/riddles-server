@@ -1,4 +1,7 @@
+import express from "express";
 import { addRiddleController, deleteRiddleController, getRiddlesController, updateRiddleController } from "../controllers/riddles.controllers.js";
+
+const riddlesRouter = express.Router();
 
 const router = {
     GET:{
