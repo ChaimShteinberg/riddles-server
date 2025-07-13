@@ -1,8 +1,8 @@
-import {readPlayer, writeplayers} from '../DAL/players.dal'
+import {readPlayers, writeplayers} from '../DAL/players.dal.js'
 
 export async function getAllPlarers() {
     try {
-        const file = await readPlayer();
+        const file = await readPlayers();
         if (!file) {
             throw new Error("The database is empty");
         }
