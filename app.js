@@ -1,5 +1,6 @@
 import express from "express";
 import riddlesRouter from "./routers/riddles.router.js";
+import playersRouter from "./routers/players.router.js";
 
 const PORT = 1456;
 
@@ -13,6 +14,7 @@ app.use((req, res, next) => {
 })
 
 app.use('/riddles', riddlesRouter)
+app.use('/players', playersRouter)
 
 app.listen(PORT, () => {
     console.log(`port: ${PORT}`)

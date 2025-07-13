@@ -17,6 +17,5 @@ export async function updatePlayerController(req, res) {
 
 export async function deletePlayerController(req, res) {
     const id = req.params.id;
-    console.log(id)
     res.send(await deletePlayer(id))
 }
