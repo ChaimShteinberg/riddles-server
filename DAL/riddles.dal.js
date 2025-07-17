@@ -9,3 +9,4 @@ export async function readRiddles() {
 export async function writeRiddles(riddlesArray) {
     writeFile(riddlesDBPath, riddlesArray);
 }
+
