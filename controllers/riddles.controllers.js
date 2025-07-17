@@ -11,12 +11,12 @@ export async function addRiddleController(req, res) {
 }
 
 export async function updateRiddleController(req, res) {
-    const {body} = req;
-    res.json(await updateRiddle(body))
+    const { body } = req;
+    const id = req.params.id;
+    res.json(await updateRiddle(id, body))
 }
 
 export async function deleteRiddleController(req, res) {
     const id = req.params.id;
-    console.log(id)
     res.send(await deleteRiddle(id))
 }

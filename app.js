@@ -1,8 +1,11 @@
 import express from "express";
 import riddlesRouter from "./routers/riddles.router.js";
 import playersRouter from "./routers/players.router.js";
+import { connecToMongo } from "./DB/riddlesDB.js";
 
-const PORT = 1456;
+await connecToMongo()
+
+const PORT = process.env.PORT;
 
 const app = express();
 
