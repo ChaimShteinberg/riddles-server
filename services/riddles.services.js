@@ -1,4 +1,7 @@
 import { readRiddles, writeRiddles } from "../DAL/riddles.dal.js";
+import riddlesDB from "../DB/riddlesDB.js";
+
+const riddleCollection = "riddlesTable"
 
 export async function getAllRiddles() {
     try {
@@ -13,14 +16,10 @@ export async function getAllRiddles() {
 }
 
 export async function addRiddle(newRiddle) {
-    let file = await getAllRiddles();
-    if (file === "The database is empty") {
-        file = []
-    } else {
-        file = JSON.parse(file)
-    }
-    file.push(newRiddle)
-    await writeRiddles(JSON.stringify(file, null, 2))
+    const result = await riddlesDB
+        .collection(riddleCollection)
+        .insertOne(newRiddle);
+    return result.insertedId
 }
 
 export async function updateRiddle(update) {
