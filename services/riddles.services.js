@@ -1,5 +1,7 @@
 import { writeRiddles } from "../DAL/riddles.dal.js";
-import riddlesDB from "../DB/riddlesDB.js";
+import riddlesDB, { connecToMongo } from "../DB/riddlesDB.js";
+
+await connecToMongo()
 
 const riddleCollection = riddlesDB.collection("riddlesTable");
 
@@ -17,28 +19,12 @@ export async function addRiddle(newRiddle) {
 }
 
 export async function updateRiddle(update) {
-    let file = await getAllRiddles();
-    try {
-        if (file === "The database is empty") {
-            throw new Error(file);
-        } else {
-            file = JSON.parse(file)
-        }
-        for (const riddle of file) {
-            if (riddle.id === update.id) {
-                const updateKeys = Object.keys(update);
-                for (const key of updateKeys) {
-                    riddle[key] = update[key];
-                }
-                await writeRiddles(JSON.stringify(file, null, 2));
-                return;
-            }
-        }
-        throw new Error("The riddle is not fount");
-
-    } catch (err) {
-        return err
-    }
+    const result = await riddleCollection
+    .updateOne(
+        { "id": update.id},
+        {$set: update}
+    );
+    return result.acknowledged;
 }
 
 export async function deleteRiddle(id) {
