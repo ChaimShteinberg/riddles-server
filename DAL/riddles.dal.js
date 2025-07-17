@@ -1,6 +1,6 @@
 import { readFile, writeFile } from "fs/promises"
 
-const riddlesDBPath = "../DB/riddles.txt";
+const riddlesDBPath = "./DB/riddles.txt";
 
 export async function readRiddles() {
     return await readFile(riddlesDBPath, "utf-8");
