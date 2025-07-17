@@ -1,23 +1,17 @@
-import { readRiddles, writeRiddles } from "../DAL/riddles.dal.js";
+import { writeRiddles } from "../DAL/riddles.dal.js";
 import riddlesDB from "../DB/riddlesDB.js";
 
-const riddleCollection = "riddlesTable"
+const riddleCollection = riddlesDB.collection("riddlesTable");
 
 export async function getAllRiddles() {
-    try {
-        const file = await readRiddles();
-        if (!file) {
-            throw new Error("The database is empty");
-        }
-        return file;
-    } catch (err) {
-        return err.message;
-    }
+    const result = await riddleCollection
+        .find()
+        .toArray();
+    return result;
 }
 
 export async function addRiddle(newRiddle) {
-    const result = await riddlesDB
-        .collection(riddleCollection)
+    const result = await riddleCollection
         .insertOne(newRiddle);
     return result.insertedId
 }
