@@ -5,4 +5,4 @@ const playerDB = createClient(
     process.env.API_KEY
 );
 
-export default playerDB
+export default playerDB.from("players");
