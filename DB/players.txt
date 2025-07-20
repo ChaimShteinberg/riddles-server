@@ -1,7 +1,0 @@
-[
-  {
-    "username": "chaim",
-    "created_at": null,
-    "best_time": 1.2725
-  }
-]
