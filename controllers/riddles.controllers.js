@@ -11,6 +11,7 @@ export async function addRiddleController(req, res) {
 }
 
 export async function updateRiddleController(req, res) {
+    console.log("hhhhhhhh")
     const { body } = req;
     const id = req.params.id;
     res.json(await updateRiddle(id, body))
