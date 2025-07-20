@@ -7,14 +7,9 @@ export async function getAllPlarers() {
 }
 
 export async function addPlayer(newPlayer) {
-    let file = await getAllPlarers();
-    if (file === "The database is empty") {
-        file = []
-    } else {
-        file = JSON.parse(file)
-    }
-    file.push(newPlayer)
-    await writeplayers(JSON.stringify(file, null, 2))
+    const {error} = await playerDB.insert(newPlayer)
+    if (error) return error;
+    return "ok"
 }
 
 export async function updatePlayer(update) {
