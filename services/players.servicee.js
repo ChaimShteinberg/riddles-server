@@ -1,19 +1,22 @@
 import playerDB from '../DB/playerDB.js';
 
 export async function getAllPlarers() {
-    const { data, error } = await playerDB.select()
-    return data || error;
+    const { data, error } = await playerDB
+        .select();
+    return error || data;
 }
 
 export async function addPlayer(newPlayer) {
-    const { error } = await playerDB.insert(newPlayer)
-    if (error) return error;
-    return "ok"
+    const { data, error } = await playerDB
+        .insert(newPlayer)
+        .select();
+    return error || data[0];
 }
 
 export async function updatePlayer(username, best_time) {
-    const { error } = await playerDB.update({"best_time": best_time})
+    const { data, error } = await playerDB
+        .update({ "best_time": best_time })
         .eq('username', username)
-    if (error) return error;
-    return "ok"
+        .select();
+    return error || data;
 }
