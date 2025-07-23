@@ -1,10 +1,27 @@
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 import playerDB from '../DB/playerDB.js';
 
 export async function signup(username, password) {
     const hash_password = await bcrypt.hash(password, 12);
     const user = await addPlayer({ username, hash_password, role: "user" });
     return user;
+}
+
+export async function signin(username, password) {
+    const user = await getPlayerByUsername(username);
+    if (!user) return "user not pound";
+    const passwordMatch = bcrypt.compare(password, user.hash_password);
+    if (!passwordMatch) return "Wrong password";
+    const token = jwt.sign({ username, role: user.role }, process.env.SECRET, { expiresIn: '1M' });
+    return token;
+}
+
+export async function getPlayerByUsername(username) {
+    const { data, error } = await playerDB
+        .select()
+        .eq('username', username);
+    return error || data[0];
 }
 
 export async function getAllPlarers() {
