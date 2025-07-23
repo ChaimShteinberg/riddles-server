@@ -13,7 +13,7 @@ export async function signin(username, password) {
     if (!user) return "user not pound";
     const passwordMatch = bcrypt.compare(password, user.hash_password);
     if (!passwordMatch) return "Wrong password";
-    const token = jwt.sign({ username, role: user.role }, process.env.SECRET, { expiresIn: '1M' });
+    const token = jwt.sign({ username, role: user.role }, process.env.SECRET, { expiresIn: '5M' });
     return token;
 }
 

@@ -10,3 +10,7 @@ export async function auth(req, res, next) {
         res.send(error.message)
     }
 }
+
+export function requireRole(role, roles){
+    return roles.includes(role);
+}
