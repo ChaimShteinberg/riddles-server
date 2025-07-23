@@ -1,4 +1,4 @@
-import { addPlayer, getAllPlarers, updatePlayer } from '../services/players.servicee.js'
+import { addPlayer, getAllPlarers, updatePlayer, getLeaderboard } from '../services/players.servicee.js'
 
 export async function getPlayersController(req, res) {
     const players = await getAllPlarers();
@@ -11,6 +11,11 @@ export async function addPlayerController(req, res) {
 }
 
 export async function updatePlayerController(req, res) {
-    const {body} = req;
+    const { body } = req;
     res.json(await updatePlayer(body.username, body.best_time))
+}
+
+export async function leaderboardControler(req, res) {
+    const leaderboard = await getLeaderboard();
+    res.send(leaderboard);
 }

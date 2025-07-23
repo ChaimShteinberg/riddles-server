@@ -20,3 +20,10 @@ export async function updatePlayer(username, best_time) {
         .select();
     return error || data;
 }
+
+export async function getLeaderboard() {
+    const { data, error } = await playerDB
+        .select()
+        .order('best_time');
+    return error || data;
+}
