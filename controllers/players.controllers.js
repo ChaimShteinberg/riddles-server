@@ -5,6 +5,11 @@ export async function singupController(req, res) {
     res.send(await signup(username, password))
 }
 
+export async function signinController(req, res) {
+    const {username, password} = req.body;
+    res.send(await signin(username, password))
+}
+
 export async function getPlayersController(req, res) {
     const players = await getAllPlarers();
     res.send(players);
