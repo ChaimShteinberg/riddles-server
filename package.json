@@ -21,6 +21,7 @@
   "homepage": "https://github.com/ChaimShteinberg/riddels-server#readme",
   "dependencies": {
     "@supabase/supabase-js": "^2.51.0",
+    "bcrypt": "^6.0.0",
     "express": "^5.1.0",
     "mongodb": "6.17"
   }

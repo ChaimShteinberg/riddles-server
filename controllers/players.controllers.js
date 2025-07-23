@@ -1,7 +1,7 @@
 import { addPlayer, getAllPlarers, updatePlayer, getLeaderboard, signup } from '../services/players.servicee.js'
 
-export async function singupController(req, res){
-    const {username, password} = req.cody;
+export async function singupController(req, res) {
+    const { username, password } = req.cody;
     res.send(await signup(username, password))
 }
 
