@@ -1,4 +1,11 @@
+import bcrypt from "bcrypt";
 import playerDB from '../DB/playerDB.js';
+
+export async function signup(username, password) {
+    const hash_password = await bcrypt.hash(password, 12);
+    const user = await addPlayer({ username, hash_password, role: "user" });
+    return user;
+}
 
 export async function getAllPlarers() {
     const { data, error } = await playerDB
