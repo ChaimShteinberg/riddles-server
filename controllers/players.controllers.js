@@ -1,4 +1,4 @@
-import { addPlayer, getAllPlarers, updatePlayer, getLeaderboard, signup } from '../services/players.servicee.js'
+import { addPlayer, getAllPlarers, updatePlayer, getLeaderboard, signup, signin } from '../services/players.servicee.js'
 
 export async function singupController(req, res) {
     const { username, password } = req.body;
@@ -6,7 +6,7 @@ export async function singupController(req, res) {
 }
 
 export async function signinController(req, res) {
-    const {username, password} = req.body;
+    const { username, password } = req.body;
     res.send(await signin(username, password))
 }
 
