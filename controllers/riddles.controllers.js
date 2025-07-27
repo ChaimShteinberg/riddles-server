@@ -1,5 +1,13 @@
 import { requireRole } from '../middleware/auth.middleware.js';
-import { getAllRiddles, addRiddle, updateRiddle, deleteRiddle } from "../services/riddles.services.js";
+import { getAllRiddles, addRiddle, updateRiddle, deleteRiddle, getRiddlesByLevel } from "../services/riddles.services.js";
+
+export async function getRiddlesByLevelController(req, res) {
+    if (!requireRole(req.user.role, ['user', 'admin'])) {
+        return res.status(403).send("you do not have permission")
+    }
+    const riddles = await getRiddlesByLevel(req.params.level);
+    res.send(riddles);
+}
 
 export async function getRiddlesController(req, res) {
     if (!requireRole(req.user.role, ['user', 'admin'])) {
