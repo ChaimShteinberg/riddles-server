@@ -1,4 +1,4 @@
-import { addPlayer, getAllPlarers, updatePlayer, getLeaderboard, signup, signin } from '../services/players.servicee.js'
+import { addPlayer, updatePlayer, getLeaderboard, signup, signin, getPlayerByUsername } from '../services/players.servicee.js'
 
 export async function singupController(req, res) {
     const { username, password } = req.body;
@@ -10,8 +10,8 @@ export async function signinController(req, res) {
     res.send(await signin(username, password))
 }
 
-export async function getPlayersController(req, res) {
-    const players = await getAllPlarers();
+export async function getPlayerController(req, res) {
+    const players = await getPlayerByUsername(req.user.username);
     res.send(players);
 }
 
