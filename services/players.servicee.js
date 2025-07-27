@@ -10,11 +10,11 @@ export async function signup(username, password) {
 
 export async function signin(username, password) {
     const user = await getPlayerByUsername(username);
-    if (!user) return "user not pound";
-    const passwordMatch = bcrypt.compare(password, user.hash_password);
-    if (!passwordMatch) return "Wrong password";
-    const token = jwt.sign({ username, role: user.role }, process.env.SECRET, { expiresIn: '5M' });
-    return token;
+    if (!user) return { message: "user not found" };
+    const passwordMatch = await bcrypt.compare(password, user.hash_password);
+    if (!passwordMatch) return { message: "Wrong password" };
+    const token = jwt.sign({ username, role: user.role }, process.env.SECRET, { expiresIn: '5m' });
+    return { message: "you have successfully logged in", token };
 }
 
 export async function getPlayerByUsername(username) {
@@ -34,7 +34,11 @@ export async function addPlayer(newPlayer) {
     const { data, error } = await playerDB
         .insert(newPlayer)
         .select();
-    return error || data[0];
+    if (error) {
+        if (error.code == '23505')
+            return "Username already exists. Please choose a different one"
+    }
+    return error || "new user created successfully";
 }
 
 export async function updatePlayer(username, best_time) {
