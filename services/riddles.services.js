@@ -2,6 +2,13 @@ import riddlesDB from "../DB/riddlesDB.js";
 
 const riddleCollection = riddlesDB.collection("riddlesTable");
 
+export async function getRiddlesByLevel(level) {
+    const result = await riddleCollection
+        .find({level})
+        .toArray();
+    return result;
+}
+
 export async function getAllRiddles() {
     const result = await riddleCollection
         .find()

@@ -1,7 +1,12 @@
 import express from "express";
-import { addRiddleController, deleteRiddleController, getRiddlesController, updateRiddleController } from "../controllers/riddles.controllers.js";
+import { addRiddleController, deleteRiddleController, getRiddlesByLevelController, getRiddlesController, updateRiddleController } from "../controllers/riddles.controllers.js";
+import { auth } from "../middleware/auth.middleware.js";
 
 const riddlesRouter = express.Router();
+
+riddlesRouter.use(auth);
+
+riddlesRouter.get('/getRiddlesByLevel/:level', getRiddlesByLevelController)
 
 riddlesRouter.get('/getAll', getRiddlesController);
 

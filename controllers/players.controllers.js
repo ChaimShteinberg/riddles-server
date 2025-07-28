@@ -1,4 +1,5 @@
-import { addPlayer, getAllPlarers, updatePlayer, getLeaderboard, signup, signin } from '../services/players.servicee.js'
+import { requireRole } from '../middleware/auth.middleware.js';
+import { addPlayer, updatePlayer, getLeaderboard, signup, signin, getPlayerByUsername } from '../services/players.servicee.js'
 
 export async function singupController(req, res) {
     const { username, password } = req.body;
@@ -10,8 +11,8 @@ export async function signinController(req, res) {
     res.send(await signin(username, password))
 }
 
-export async function getPlayersController(req, res) {
-    const players = await getAllPlarers();
+export async function getPlayerController(req, res) {
+    const players = await getPlayerByUsername(req.user.username);
     res.send(players);
 }
 
@@ -21,11 +22,17 @@ export async function addPlayerController(req, res) {
 }
 
 export async function updatePlayerController(req, res) {
+    if (!requireRole(req.user.role, ['user', 'admin'])) {
+        return res.status(403).send("you do not have permission")
+    }
     const { body } = req;
     res.json(await updatePlayer(body.username, body.best_time))
 }
 
 export async function leaderboardControler(req, res) {
+    if (!requireRole(req.user.role, ['user', 'admin'])) {
+        return res.status(403).send("you do not have permission")
+    }
     const leaderboard = await getLeaderboard();
     res.send(leaderboard);
 }
