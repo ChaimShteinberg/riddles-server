@@ -8,7 +8,9 @@ playersRouter.post('/signup', singupController);
 
 playersRouter.post('/signin', signinController);
 
-playersRouter.use(auth)
+playersRouter.use(auth);
+
+playersRouter.get('/signinByToken', (req, res) => { res.json("true") });
 
 playersRouter.get('/getPlayer', getPlayerController);
 

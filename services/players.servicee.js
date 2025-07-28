@@ -31,9 +31,8 @@ export async function getAllPlarers() {
 }
 
 export async function addPlayer(newPlayer) {
-    const { data, error } = await playerDB
+    const { error } = await playerDB
         .insert(newPlayer)
-        .select();
     if (error) {
         if (error.code == '23505')
             return "Username already exists. Please choose a different one"
@@ -46,7 +45,7 @@ export async function updatePlayer(username, best_time) {
         .update({ "best_time": best_time })
         .eq('username', username)
         .select();
-    return error || data;
+    return error || "The player has been successfully updated";
 }
 
 export async function getLeaderboard() {
