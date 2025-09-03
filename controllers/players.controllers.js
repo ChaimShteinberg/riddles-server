@@ -4,7 +4,7 @@ import {
   updatePlayer,
   getLeaderboard,
   register,
-  signin,
+  login,
   getPlayerByUsername,
 } from "../services/players.services.js";
 
@@ -13,9 +13,9 @@ export async function registerController(req, res) {
   res.send(await register(username, password));
 }
 
-export async function signinController(req, res) {
+export async function loginController(req, res) {
   const { username, password } = req.body;
-  res.send(await signin(username, password));
+  res.send(await login(username, password));
 }
 
 export async function getPlayerController(req, res) {

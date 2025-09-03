@@ -4,7 +4,7 @@ import {
   updatePlayerController,
   leaderboardControler,
   registerController,
-  signinController,
+  loginController,
   getPlayerController,
 } from "../controllers/players.controllers.js";
 import { auth } from "../middleware/auth.middleware.js";
@@ -13,7 +13,7 @@ const playersRouter = express.Router();
 
 playersRouter.post("/register", registerController);
 
-playersRouter.post("/login", signinController);
+playersRouter.post("/login", loginController);
 
 playersRouter.use(auth);
 

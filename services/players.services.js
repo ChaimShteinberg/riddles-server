@@ -8,7 +8,7 @@ export async function register(username, password) {
   return user;
 }
 
-export async function signin(username, password) {
+export async function login(username, password) {
   const user = await getPlayerByUsername(username);
   if (!user) return { message: "user not found" };
   const passwordMatch = await bcrypt.compare(password, user.hash_password);
