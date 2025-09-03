@@ -1,24 +1,32 @@
 import express from "express";
-import { addPlayerController, updatePlayerController, leaderboardControler, singupController, signinController, getPlayerController } from "../controllers/players.controllers.js";
+import {
+  addPlayerController,
+  updatePlayerController,
+  leaderboardControler,
+  registerController,
+  signinController,
+  getPlayerController,
+} from "../controllers/players.controllers.js";
 import { auth } from "../middleware/auth.middleware.js";
 
 const playersRouter = express.Router();
 
-playersRouter.post('/signup', singupController);
+playersRouter.post("/register", registerController);
 
-playersRouter.post('/signin', signinController);
+playersRouter.post("/login", signinController);
 
 playersRouter.use(auth);
 
-playersRouter.get('/signinByToken', (req, res) => { res.json("true") });
+playersRouter.get("/signinByToken", (req, res) => {
+  res.json("true");
+});
 
-playersRouter.get('/getPlayer', getPlayerController);
+playersRouter.get("/getPlayer", getPlayerController);
 
-playersRouter.post('/create', addPlayerController);
+playersRouter.post("/create", addPlayerController);
 
-playersRouter.put('/update', updatePlayerController);
+playersRouter.put("/update", updatePlayerController);
 
-playersRouter.get('/leaderboard', leaderboardControler)
-
+playersRouter.get("/leaderboard", leaderboardControler);
 
 export default playersRouter;

@@ -2,12 +2,15 @@ import express from "express";
 import riddlesRouter from "./routers/riddles.router.js";
 import playersRouter from "./routers/players.router.js";
 import { connecToMongo } from "./DB/riddlesDB.js";
+import cors from "cors";
 
 await connecToMongo()
 
 const PORT = process.env.PORT;
 
 const app = express();
+
+app.use(cors())
 
 app.use(express.json())
 
