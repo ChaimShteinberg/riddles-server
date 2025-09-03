@@ -4,13 +4,15 @@ import playerDB from "../DB/playerDB.js";
 
 export async function register(username, password) {
   const hash_password = await bcrypt.hash(password, 12);
-  const message = await addPlayer({ username, hash_password, role: "user" });
-  if (message === "new user created successfully") {
-    const token = jwt.sign({ username, role: user.role }, process.env.SECRET, {
+  const result = await addPlayer({ username, hash_password, role: "user" });
+  if (result.message === "new user created successfully") {
+    const token = jwt.sign({ username, role: result.user.role }, process.env.SECRET, {
       expiresIn: "5m",
     });
-    return { message, token };
-  }  else {return {message}}
+    return { message: result.message, token };
+  } else {
+    return { message: result.message };
+  }
 }
 
 export async function login(username, password) {
@@ -35,12 +37,12 @@ export async function getAllPlarers() {
 }
 
 export async function addPlayer(newPlayer) {
-  const { error } = await playerDB.insert(newPlayer);
+  const { error, data } = await playerDB.insert(newPlayer).select();
   if (error) {
     if (error.code == "23505")
       return "Username already exists. Please choose a different one";
   }
-  return error || "new user created successfully";
+  return error || { message: "new user created successfully", user: data[0] };
 }
 
 export async function updatePlayer(username, best_time) {

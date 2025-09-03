@@ -10,12 +10,24 @@ import {
 
 export async function registerController(req, res) {
   const { username, password } = req.body;
-  res.send(await register(username, password));
+  const result = await register(username, password);
+  if (result.token) {
+    res.cookie("token", result.token, {
+      httpOnly: true,
+    });
+  }
+  res.send({ message: result.message });
 }
 
 export async function loginController(req, res) {
   const { username, password } = req.body;
-  res.send(await login(username, password));
+  const result = await login(username, password);
+  if (result.token) {
+    res.cookie("token", result.token, {
+      httpOnly: true,
+    });
+  }
+  res.send({ message: result.message });
 }
 
 export async function getPlayerController(req, res) {
