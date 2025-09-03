@@ -5,10 +5,12 @@ import playerDB from "../DB/playerDB.js";
 export async function register(username, password) {
   const hash_password = await bcrypt.hash(password, 12);
   const message = await addPlayer({ username, hash_password, role: "user" });
-  const token = jwt.sign({ username, role: user.role }, process.env.SECRET, {
-    expiresIn: "5m",
-  });
-  return { message, token };
+  if (message === "new user created successfully") {
+    const token = jwt.sign({ username, role: user.role }, process.env.SECRET, {
+      expiresIn: "5m",
+    });
+    return { message, token };
+  }  else {return {message}}
 }
 
 export async function login(username, password) {
