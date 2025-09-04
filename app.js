@@ -1,4 +1,5 @@
 import express from "express";
+import cookieParser from "cookie-parser";
 import riddlesRouter from "./routers/riddles.router.js";
 import playersRouter from "./routers/players.router.js";
 import { connecToMongo } from "./DB/riddlesDB.js";
@@ -28,6 +29,8 @@ app.use( cors({
     credentials: true,
   })
 );
+
+app.use(cookieParser())
 
 app.use(express.json());
 
